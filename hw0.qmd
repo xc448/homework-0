@@ -1,0 +1,49 @@
+---
+title: "Homework 0"
+author: Shirley(Xueying) Chen
+format: html
+execute:
+  echo: FALSE
+---
+
+```{r}
+# Assign values to a, b, and c here:
+a <- 1
+b <- 3
+c <- 2
+```
+
+**Showing the solution(s) to the quadratic equation**
+
+After assigning values to a, b, and c, we use the 
+the quadratic formula to calculate the solution(s). 
+$$ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$$
+We first calculate $b^2 -4ac$ to check if it is larger or greater than 0 (whether or not the equation has a solution).
+
+```{r}
+val <- b^2-4*a*c
+```
+From the calculated value (which equals to `r val`), we can further use the quadratic formula to calculate the solution (if there is one).
+
+```{r, warning= FALSE}
+# using if-else statements to print out the corresponding solutions regarding the a, b, and c values plugged in above. 
+if (val < 0) { 
+  print('There is no solution to the equation.') # if val is less than 0, which means there is no solution to the equation. 
+}else if (val == 0) {
+  print(paste('There is one solution:' , as.character((-b+sqrt(b^2 - 4*a*c))/2*a))) # if val equals to 0, which means there is only one solution.
+}else {
+  print(paste('There are two solutions:', as.character((-b+sqrt(b^2 - 4*a*c))/2*a),', ', as.character((-b-sqrt(b^2 - 4*a*c))/2*a) )) # if val is greater than 0, the equation has two distinct solutions. 
+  
+}
+```
+
+**Plotting the quadratic curve with the line y = 0 for** $$x\in (-5, 5)$$
+
+```{r}
+# assigning x to a range of -5 to 5 giving the length of the sequence to be 300.
+x <- seq(-5,5,length = 300)
+# plotting the quadratic curve
+plot(x, a*x^2 + b*x + c, type = "l")
+# adding a horizontal line passing y = 0. The intersection with the quadratic curve confirms the solutions calculated above.  
+abline(h = 0, lty = 2)
+```
